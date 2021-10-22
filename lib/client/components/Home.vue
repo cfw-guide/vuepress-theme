@@ -1,14 +1,4 @@
 <template>
-  <!--<div class="page__hero--overlay" style="background-color: #1a1d24; background-image: url('/assets/images/splash-taurine.png');">
-    <div class="wrapper">
-      <h1 id="page-title" class="page__title" itemprop="headline">
-      iOS Guide
-      </h1>
-      <p class="page__lead">A complete iOS modding guide, from stock to jailbroken.
-      </p>
-      <p><a href="/get-started" class="btn btn--light-outline btn--large">Get Started</a></p>
-    </div>
-  </div>-->
 
   <main class="splash" :aria-labelledby="heroText ? 'main-title' : undefined">
     <header class="hero heroImage" :style="{'background-image':'url(' + heroImage + ')', 'background-color':heroColor}">
