@@ -11,7 +11,7 @@
           {{ tagline }}
         </p>
 
-        <p><a :href=heroBtnLink class="heroBtn">{{heroBtnText}}</a></p>
+        <p v-if="heroBtnText"><a :href=heroBtnLink class="heroBtn">{{heroBtnText}}</a></p>
 
         <p v-if="actions.length" class="actions">
           <NavLink
