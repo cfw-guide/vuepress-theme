@@ -4,7 +4,9 @@
 
     <div class="theme-default-content">
       <h1>{{ pageTitle }}</h1>
-      <div class="custom-container tip" v-html="discordNoticeText" />
+      <div v-if="discordNoticeText">
+        <div class="custom-container tip" v-html="discordNoticeText" />
+      </div>
       
       <hr>
       <div style="text-align: center;">
@@ -47,8 +49,12 @@ const discordNoticeText = computed(() => {
     return null
   }
   
-  var md = require('markdown-it')()
-  var render = md.render(discordNoticeText)
+  try {
+    var md = require('markdown-it')()
+    var render = md.render(discordNoticeText)
+  } catch {
+    return discordNoticeText
+  }
   
   return render
 })
