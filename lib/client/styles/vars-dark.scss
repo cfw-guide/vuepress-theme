@@ -21,9 +21,9 @@ html.dark {
   // custom container colors
   --c-tip: #318a62;
   --c-warning: #ceab00;
-  --c-warning-bg: #7e755b;
+  --c-warning-bg: var(--c-tip-bg); // #7e755b;
   --c-warning-title: #ceac03;
-  --c-warning-text: #362e00;
+  --c-warning-text: var(--c-text); // #362e00;
   --c-danger: #97424a; //#940000;
   --c-danger-bg: var(--c-tip-bg); // #806161;
   --c-danger-title: #610000;
