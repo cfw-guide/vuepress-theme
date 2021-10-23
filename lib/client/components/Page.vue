@@ -4,9 +4,7 @@
 
     <div class="theme-default-content">
       <h1>{{ pageTitle }}</h1>
-      <div v-if="discordNoticeText">
-        <div class="custom-container tip" v-html="discordNoticeText" />
-      </div>
+      <div class="custom-container tip" v-if="discordNoticeText" v-html="discordNoticeText" />
       
       <hr v-if="adTagOne">
       <div v-if="adTagOne" style="text-align: center;">
@@ -42,8 +40,9 @@ import type { DefaultThemeHomePageFrontmatter } from '../../shared'
 const frontmatter = usePageFrontmatter<DefaultThemeHomePageFrontmatter>()
 import { useThemeLocaleData } from '../composables'
 
+const themeLocale = useThemeLocaleData()
+
 const discordNoticeText = computed(() => {
-  const themeLocale = useThemeLocaleData()
   var discordNoticeText = themeLocale.value.discordNoticeText
   if (discordNoticeText === null) {
     return null
@@ -60,7 +59,6 @@ const discordNoticeText = computed(() => {
 })
 
 const adTagOne = computed(() => {
-  const themeLocale = useThemeLocaleData()
   var adTagOne = themeLocale.value.adTagOne
   if (adTagOne === null) {
     return null
@@ -70,7 +68,6 @@ const adTagOne = computed(() => {
 })
 
 const adTagTwo = computed(() => {
-  const themeLocale = useThemeLocaleData()
   var adTagTwo = themeLocale.value.adTagTwo
   if (adTagTwo === null) {
     return null

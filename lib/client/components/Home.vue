@@ -26,7 +26,9 @@
     </header>
 
     <div class="home">
-
+      
+      <div class="custom-container tip" v-if="discordNoticeText" v-html="discordNoticeText" />
+      
       <div v-if="features.length" class="features">
         <div v-for="feature in features" :key="feature.title" class="feature">
           <h2>{{ feature.title }}</h2>
@@ -54,13 +56,16 @@ import {
   useSiteLocaleData,
   withBase,
 } from '@vuepress/client'
+
 import { isArray } from '@vuepress/shared'
 import { computed } from 'vue'
 import type { DefaultThemeHomePageFrontmatter } from '../../shared'
 import NavLink from './NavLink.vue'
+import { useThemeLocaleData } from '../composables'
 
 const frontmatter = usePageFrontmatter<DefaultThemeHomePageFrontmatter>()
 const siteLocale = useSiteLocaleData()
+const themeLocale = useThemeLocaleData()
 
 // hero image and title
 const heroImage = computed(() => {
@@ -107,6 +112,22 @@ const tagline = computed(() => {
     siteLocale.value.description ||
     'Welcome to your VuePress site'
   )
+})
+
+const discordNoticeText = computed(() => {
+  var discordNoticeText = themeLocale.value.discordNoticeText
+  if (discordNoticeText === null) {
+    return null
+  }
+  
+  try {
+    var md = require('markdown-it')()
+    var render = md.render(discordNoticeText)
+  } catch {
+    return discordNoticeText
+  }
+  
+  return render
 })
 
 // action buttons
