@@ -15,7 +15,7 @@
       <Content />
       
       <hr v-if="adTagTwo">
-      <div v-if="adTagOne" style="text-align: center;">
+      <div v-if="adTagTwo" style="text-align: center;">
           <div :id=adTagTwo></div>
       </div>
     </div>

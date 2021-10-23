@@ -39,6 +39,15 @@
       <div class="theme-default-content custom">
         <Content />
       </div>
+      
+      <hr v-if="adTagOne">
+      <div v-if="adTagOne" style="text-align: center;">
+          <div :id=adTagOne></div>
+      </div>
+      <hr v-if="adTagTwo">
+      <div v-if="adTagTwo" style="text-align: center;">
+          <div :id=adTagTwo></div>
+      </div>
 
       <template v-if="footer">
         <!-- eslint-disable-next-line vue/no-v-html -->
@@ -128,6 +137,23 @@ const discordNoticeText = computed(() => {
   }
   
   return render
+})
+const adTagOne = computed(() => {
+  var adTagOne = themeLocale.value.adTagOne
+  if (adTagOne === null) {
+    return null
+  }
+  
+  return adTagOne
+})
+
+const adTagTwo = computed(() => {
+  var adTagTwo = themeLocale.value.adTagTwo
+  if (adTagTwo === null) {
+    return null
+  }
+  
+  return adTagTwo
 })
 
 // action buttons
