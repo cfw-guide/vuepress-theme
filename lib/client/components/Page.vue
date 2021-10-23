@@ -6,16 +6,16 @@
       <h1>{{ pageTitle }}</h1>
       <div class="custom-container tip" v-if="discordNoticeText" v-html="discordNoticeText" />
       
-      <hr v-if="adTagOne">
-      <div v-if="adTagOne" style="text-align: center;">
+      <hr v-if="adTagOne && adsBool">
+      <div v-if="adTagOne && adsBool" style="text-align: center;">
           <div :id=adTagOne></div>
       </div>
-      <hr v-if="adTagOne">
+      <hr v-if="adTagOne && adsBool">
       
       <Content />
       
-      <hr v-if="adTagTwo">
-      <div v-if="adTagTwo" style="text-align: center;">
+      <hr v-if="adTagTwo && adsBool">
+      <div v-if="adTagTwo && adsBool" style="text-align: center;">
           <div :id=adTagTwo></div>
       </div>
     </div>
@@ -74,6 +74,14 @@ const adTagTwo = computed(() => {
   }
   
   return adTagTwo
+})
+
+const adsBool = computed(() => {
+  if (frontmatter.value.ads == null) {
+    return true
+  }
+  
+  return frontmatter.value.ads
 })
 
 const pageTitle = computed(() => {
