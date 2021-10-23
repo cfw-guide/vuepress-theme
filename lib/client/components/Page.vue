@@ -8,16 +8,16 @@
         <div class="custom-container tip" v-html="discordNoticeText" />
       </div>
       
-      <hr>
-      <div style="text-align: center;">
+      <hr v-if="adTagOne">
+      <div v-if="adTagOne" style="text-align: center;">
           <div :id=adTagOne></div>
       </div>
-      <hr>
+      <hr v-if="adTagOne">
       
       <Content />
       
-      <hr>
-      <div style="text-align: center;">
+      <hr v-if="adTagTwo">
+      <div v-if="adTagOne" style="text-align: center;">
           <div :id=adTagTwo></div>
       </div>
     </div>
