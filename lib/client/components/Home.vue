@@ -1,7 +1,7 @@
 <template>
 
   <main class="splash" :aria-labelledby="heroText ? 'main-title' : undefined">
-    <header class="hero heroImage" :style="{'background-image':'url(' + heroImage + ')', 'background-color':heroColor}">
+    <header class="hero heroImage" :style="{'background-image':'linear-gradient(rgba(0, 0, 0, ' + heroFilter + '), rgba(0, 0, 0, ' + heroFilter + ')), url(' + heroImage + ')', 'background-color':heroColor}">
       <div class="wrapper">
         <h1 v-if="heroText" id="main-title">
           {{ heroText }}
@@ -83,6 +83,7 @@ const heroImage = computed(() => {
 
   return withBase(frontmatter.value.header.overlay_image)
 })
+
 const heroColor = computed(() => {
   if (!frontmatter.value.header.overlay_color) {
     return null
@@ -90,6 +91,15 @@ const heroColor = computed(() => {
 
   return frontmatter.value.header.overlay_color
 })
+
+const heroFilter = computed(() => {
+  if (!frontmatter.value.header.overlay_filter) {
+    return 0
+  }
+
+  return frontmatter.value.header.overlay_filter
+})
+
 const heroText = computed(() => {
   if (frontmatter.value.header.overlay_title === null) {
     return null
