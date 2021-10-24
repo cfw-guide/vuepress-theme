@@ -40,11 +40,10 @@
         <Content />
       </div>
       
-      <hr v-if="adTagOne && adsBool">
       <div v-if="adTagOne && adsBool" style="text-align: center;">
           <div :id=adTagOne></div>
       </div>
-      <hr v-if="adTagTwo && adsBool">
+      <hr v-if="adTagOne && adTagTwo && adsBool">
       <div v-if="adTagTwo && adsBool" style="text-align: center;">
           <div :id=adTagTwo></div>
       </div>

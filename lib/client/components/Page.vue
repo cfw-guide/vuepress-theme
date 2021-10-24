@@ -6,15 +6,12 @@
       <h1>{{ pageTitle }}</h1>
       <div class="custom-container tip" v-if="discordNoticeText" v-html="discordNoticeText" />
       
-      <hr v-if="adTagOne && adsBool">
       <div v-if="adTagOne && adsBool" style="text-align: center;">
           <div :id=adTagOne></div>
       </div>
-      <hr v-if="adTagOne && adsBool">
       
       <Content />
       
-      <hr v-if="adTagTwo && adsBool">
       <div v-if="adTagTwo && adsBool" style="text-align: center;">
           <div :id=adTagTwo></div>
       </div>
