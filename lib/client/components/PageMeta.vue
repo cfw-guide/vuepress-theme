@@ -59,7 +59,7 @@ const useEditNavLink = (): ComputedRef<null | NavLinkType> => {
       repo,
       docsRepo = repo,
       docsBranch = 'main',
-      docsDir = '',
+      docsDir = 'docs',
       editLinkText,
     } = themeLocale.value
 
