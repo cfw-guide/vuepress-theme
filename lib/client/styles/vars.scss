@@ -32,13 +32,13 @@
   --c-warning: #e7c000;
   --c-warning-bg: #fffae3;
   --c-warning-title: #ad9000;
-  --c-warning-text: #746000;
-  --c-warning-text-accent: var(--c-text);
+  --c-warning-text: var(--c-text);
+  --c-warning-text-accent: #b89a06;
   --c-danger: #cc0000;
   --c-danger-bg: #ffe0e0;
   --c-danger-title: #990000;
-  --c-danger-text: #660000;
-  --c-danger-text-accent: var(--c-text);
+  --c-danger-text: var(--c-text);
+  --c-danger-text-accent: #cc4949;
   --c-details-bg: #eeeeee;
 
   // badge component colors
