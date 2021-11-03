@@ -41,6 +41,7 @@ const useNavbarSelectLanguage = (): ComputedRef<ResolvedNavbarItem[]> => {
     const languageDropdown: ResolvedNavbarItem = {
       text: themeLocale.value.selectLanguageText ?? 'unkown language',
       ariaLabel: themeLocale.value.selectLanguageAriaLabel ?? 'unkown language',
+      dropdown: false,
       children: localePaths.map((targetLocalePath) => {
         // target locale config of this langauge link
         const targetSiteLocale =
@@ -80,6 +81,7 @@ const useNavbarSelectLanguage = (): ComputedRef<ResolvedNavbarItem[]> => {
       }),
     }
 
+    languageDropdown.noDropdown = true
     return [languageDropdown]
   })
 }
@@ -149,7 +151,7 @@ const navbarSelectLanguage = useNavbarSelectLanguage()
 const navbarRepo = useNavbarRepo()
 const navbarLinks = computed(() => [
   ...navbarConfig.value,
-  ...navbarSelectLanguage.value,
   ...navbarRepo.value,
+  ...navbarSelectLanguage.value,
 ])
 </script>

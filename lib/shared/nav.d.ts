@@ -10,6 +10,7 @@ export interface NavItem {
  */
 export interface NavGroup<T> extends NavItem {
     children: T[];
+    dropdown: bool;
 }
 /**
  * Props for `<NavLink>`

@@ -6,8 +6,8 @@
       :aria-label="dropdownAriaLabel"
       @click="handleDropdown"
     >
-      <span class="title">{{ item.text }}</span>
-      <span class="arrow down" />
+      <span class="title" v-html="item.text"/>
+      <span v-if="!item.noDropdown" class="arrow down" />
     </button>
 
     <button
@@ -16,7 +16,7 @@
       :aria-label="dropdownAriaLabel"
       @click="open = !open"
     >
-      <span class="title">{{ item.text }}</span>
+      <span class="title" v-html="item.text"/>
       <span class="arrow" :class="open ? 'down' : 'right'" />
     </button>
 
