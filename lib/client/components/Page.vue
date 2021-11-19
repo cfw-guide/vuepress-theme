@@ -40,7 +40,7 @@ import { useThemeLocaleData } from '../composables'
 const themeLocale = useThemeLocaleData()
 
 const discordNoticeText = computed(() => {
-  var discordNoticeText = themeLocale.value.discordNoticeText
+  var discordNoticeText = frontmatter.value.discordNoticeText || themeLocale.value.discordNoticeText
   if (discordNoticeText === null) {
     return null
   }
