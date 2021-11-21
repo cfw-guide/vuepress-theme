@@ -1,6 +1,6 @@
 html.dark {
   // brand colors
-  --c-brand: #3aa675;
+  --c-brand: var(--c-accent-color); // #3aa675;
   --c-brand-light: #349469;
 
   // background colors
@@ -19,7 +19,7 @@ html.dark {
   --c-border-dark: #34404c;
 
   // custom container colors
-  --c-tip: #318a62;
+  --c-tip: #3992a3; // #318a62;
   --c-warning: #ceab00;
   --c-warning-bg: var(--c-tip-bg); // #7e755b;
   --c-warning-title: #ceac03;
