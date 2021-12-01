@@ -8,8 +8,7 @@
       <span class="meta-item-label">{{ themeLocale.lastUpdatedText }}: </span>
       <span class="meta-item-info">{{ lastUpdated }}</span>
     </div>
-    
-    <div v-if="contributors.length" class="meta-item contributors">
+    <div v-if="contributors && contributors.length" class="meta-item contributors">
       <span class="meta-item-label">{{ themeLocale.contributorsText }}: </span>
       <span class="meta-item-info">
         <template v-for="(contributor, index) in contributors" :key="index">
@@ -23,35 +22,6 @@
         </template>
       </span>
     </div>
-    
-    <!--<div
-      class="meta-item contributors"
-    >
-      <span class="meta-item-label">{{ themeLocale.contributorsText }}: </span>
-      <span class="meta-item-info">
-        <template v-for="(contributor, index) in contributors" :key="index">
-          <span class="contributor" :title="`email: ${contributor.email}`">
-            {{ contributor.name }}
-          </span>
-          <template v-if="index !== contributors.length - 1">, </template>
-        </template>
-      </span>
-    </div>-->
-
-    <!--<div
-      v-if="contributors && contributors.length"
-      class="meta-item contributors"
-    >
-      <span class="meta-item-label">{{ themeLocale.contributorsText }}: </span>
-      <span class="meta-item-info">
-        <template v-for="(contributor, index) in contributors" :key="index">
-          <span class="contributor" :title="`email: ${contributor.email}`">
-            {{ contributor.name }}
-          </span>
-          <template v-if="index !== contributors.length - 1">, </template>
-        </template>
-      </span>
-    </div>-->
   </footer>
 </template>
 
@@ -131,7 +101,7 @@ const useLastUpdated = (): ComputedRef<null | string> => {
   })
 }
 
-/*const useContributors = (): ComputedRef<null | Required<DefaultThemePageData['git']>['contributors']> => {
+const useContributors = (): ComputedRef<null | Required<DefaultThemePageData['git']>['contributors']> => {
   const themeLocale = useThemeLocaleData()
   const page = usePageData<DefaultThemePageData>()
   const frontmatter = usePageFrontmatter<DefaultThemeNormalPageFrontmatter>()
@@ -139,44 +109,32 @@ const useLastUpdated = (): ComputedRef<null | string> => {
   return computed(() => {
     const showContributors =
       frontmatter.value.contributors ?? themeLocale.value.contributors ?? true
-
+      
     if (!showContributors) return null
 
-    return page.value.git?.contributors ?? null
-  })
-}*/
-
-/*const useContributors = computed(() => {
-  const frontmatter = usePageFrontmatter<DefaultThemeNormalPageFrontmatter>()
-  if (frontmatter.value.hasOwnProperty('contributors')) return frontmatter.value.contributors
-  return null;
-})*/
-
-const useContributors = computed(() => {
-  const frontmatter = usePageFrontmatter<DefaultThemeNormalPageFrontmatter>()
-  const page = usePageData<DefaultThemePageData>()
-  const themeLocale = useThemeLocaleData()
-  
-  const showContributors =
-    frontmatter.value.contributors ?? themeLocale.value.contributors ?? true
+    let retArr = page.value.git?.contributors ?? null;
+    let nameArr = [];
     
-  if (!showContributors) return null
-  
-  let retArr = page.value.git.contributors || [];
-  
-  if (frontmatter.value.hasOwnProperty('extra_contributors')) {
-    const c = frontmatter.value.extra_contributors;
-    if (!Array.isArray(c)) {
-      var obj = {name: c, email: null}; retArr.push(obj);
+    if (frontmatter.value.hasOwnProperty('extra_contributors')) {
+      const c = frontmatter.value.extra_contributors;
+      if (!Array.isArray(c)) nameArr.push(c);
+      else for (const i in c) nameArr.push(c[i]);
     }
-    else for (const i in c) retArr.push({name: c[i], email: ""});
-  }
-  
-  return retArr;
-})
+    
+    function convToContr(currentValue) {
+      return {
+        name: currentValue,
+        email: null,
+        commits: 0,
+      };
+    };
+    
+    return [...retArr, ...nameArr.map(convToContr)];
+  })
+}
 
 const themeLocale = useThemeLocaleData()
 const editNavLink = useEditNavLink()
 const lastUpdated = useLastUpdated()
-const contributors = useContributors
+const contributors = useContributors()
 </script>
