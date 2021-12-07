@@ -41,11 +41,11 @@
       </div>
       
       <div v-if="adTagOne && adsBool" style="text-align: center;">
-          <div :id=adTagOne></div>
+          <div :id="adTagOne"></div>
       </div>
       <hr v-if="adTagOne && adTagTwo && adsBool">
       <div v-if="adTagTwo && adsBool" style="text-align: center;">
-          <div :id=adTagTwo></div>
+          <div :id="adTagTwo"></div>
       </div>
 
       <template v-if="footer">
@@ -133,20 +133,14 @@ const tagline = computed(() => {
 })
 
 const discordNoticeText = computed(() => {
-  var discordNoticeText = themeLocale.value.discordNoticeText
+  var discordNoticeText = frontmatter.value.discordNoticeText || themeLocale.value.discordNoticeText
   if (discordNoticeText === null) {
     return null
   }
   
-  try {
-    var md = require('markdown-it')()
-    var render = md.render(discordNoticeText)
-  } catch {
-    return discordNoticeText
-  }
-  
-  return render
+  return '<p>' + discordNoticeText + '</p>'
 })
+
 const adTagOne = computed(() => {
   var adTagOne = themeLocale.value.adTagOne
   if (adTagOne === null) {

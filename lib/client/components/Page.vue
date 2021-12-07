@@ -4,16 +4,16 @@
 
     <div class="theme-default-content">
       <h1>{{ pageTitle }}</h1>
-      <div class="custom-container tip" v-if="discordNoticeText" v-html="discordNoticeText" />
+      <div class="custom-container tip" v-if="discordNoticeText" v-html="discordNoticeText"/>
       
       <div v-if="adTagOne && adsBool" style="text-align: center;">
-          <div :id=adTagOne></div>
+          <div :id="adTagOne"></div>
       </div>
       
       <Content />
       
       <div v-if="adTagTwo && adsBool" style="text-align: center;">
-          <div :id=adTagTwo></div>
+          <div :id="adTagTwo"></div>
       </div>
     </div>
 
@@ -45,14 +45,7 @@ const discordNoticeText = computed(() => {
     return null
   }
   
-  try {
-    var md = require('markdown-it')()
-    var render = md.render(discordNoticeText)
-  } catch {
-    return discordNoticeText
-  }
-  
-  return render
+  return '<p>' + discordNoticeText + '</p>'
 })
 
 const adTagOne = computed(() => {
