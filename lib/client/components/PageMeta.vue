@@ -107,29 +107,33 @@ const useContributors = (): ComputedRef<null | Required<DefaultThemePageData['gi
   const frontmatter = usePageFrontmatter<DefaultThemeNormalPageFrontmatter>()
 
   return computed(() => {
-    const showContributors =
-      frontmatter.value.contributors ?? themeLocale.value.contributors ?? true
-      
-    if (!showContributors) return null
+    try {
+      const showContributors =
+        frontmatter.value.contributors ?? themeLocale.value.contributors ?? true
+        
+      if (!showContributors) return null
 
-    let retArr = page.value.git?.contributors ?? null;
-    let nameArr = [];
-    
-    if (frontmatter.value.hasOwnProperty('extra_contributors')) {
-      const c = frontmatter.value.extra_contributors;
-      if (!Array.isArray(c)) nameArr.push(c);
-      else for (const i in c) nameArr.push(c[i]);
-    }
-    
-    function convToContr(currentValue) {
-      return {
-        name: currentValue,
-        email: null,
-        commits: 0,
+      let retArr = page.value.git?.contributors ?? null;
+      let nameArr = [];
+      
+      if (frontmatter.value.hasOwnProperty('extra_contributors')) {
+        const c = frontmatter.value.extra_contributors;
+        if (!Array.isArray(c)) nameArr.push(c);
+        else for (const i in c) nameArr.push(c[i]);
+      }
+      
+      function convToContr(currentValue) {
+        return {
+          name: currentValue,
+          email: null,
+          commits: 0,
+        };
       };
-    };
-    
-    return [...retArr, ...nameArr.map(convToContr)];
+      
+      return [...retArr, ...nameArr.map(convToContr)];
+    } catch {
+      return null;
+    }
   })
 }
 
