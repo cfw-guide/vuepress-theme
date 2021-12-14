@@ -11,6 +11,8 @@
   .logo {
     height: var(--navbar-line-height);
     margin-right: var(--navbar-padding-v);
+    margin-left: 0;
+    display: inline;
     vertical-align: top;
   }
 
