@@ -22,7 +22,7 @@
   >
     <slot name="before" />
     {{ item.text }}
-    <OutboundLink v-if="isBlankTarget" />
+    <OutboundLink v-if="isBlankTarget && !item.hideExtern" />
     <slot name="after" />
   </a>
 </template>
