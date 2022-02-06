@@ -77,54 +77,38 @@ const themeLocale = useThemeLocaleData()
 
 // hero image and title
 const heroImage = computed(() => {
-  if (!frontmatter.value.header.overlay_image) {
-    return null
-  }
-
+  if (!frontmatter.value.header.overlay_image) return
   return withBase(frontmatter.value.header.overlay_image)
 })
 
 const heroColor = computed(() => {
-  if (!frontmatter.value.header.overlay_color) {
-    return null
-  }
-
+  if (!frontmatter.value.header.overlay_color) return
   return frontmatter.value.header.overlay_color
 })
 
 const heroFilter = computed(() => {
-  if (!frontmatter.value.header.overlay_filter) {
-    return 0
-  }
+  if (!frontmatter.value.header.overlay_filter) return 0
 
   return frontmatter.value.header.overlay_filter
 })
 
 const heroText = computed(() => {
-  if (frontmatter.value.header.overlay_title === null) {
-    return null
-  }
+  if (!frontmatter.value.header.overlay_title) return
   return frontmatter.value.header.overlay_title || siteLocale.value.title || 'Hello'
 })
 const heroBtnText = computed(() => {
-  if (frontmatter.value.header.cta_label === null) {
-    return null
-  }
+  if (!frontmatter.value.header.cta_label) return
   return frontmatter.value.header.cta_label
 })
 const heroBtnLink = computed(() => {
-  if (frontmatter.value.header.cta_url === null) {
-    return null
-  }
+  if (!frontmatter.value.header.cta_url) return
   return frontmatter.value.header.cta_url
 })
 const heroAlt = computed(
   () => frontmatter.value.heroAlt || heroText.value || 'hero'
 )
 const tagline = computed(() => {
-  if (frontmatter.value.header.overlay_excerpt === null) {
-    return null
-  }
+  if (!frontmatter.value.header.overlay_excerpt) return
   return (
     frontmatter.value.header.overlay_excerpt ||
     siteLocale.value.description ||
@@ -134,36 +118,25 @@ const tagline = computed(() => {
 
 const discordNoticeText = computed(() => {
   var discordNoticeText = frontmatter.value.discordNoticeText || themeLocale.value.discordNoticeText
-  if (discordNoticeText === null) {
-    return null
-  }
+  if (!discordNoticeText) return
   
   return '<p>' + discordNoticeText + '</p>'
 })
 
 const adTagOne = computed(() => {
   var adTagOne = themeLocale.value.adTagOne
-  if (adTagOne === null) {
-    return null
-  }
-  
+  if (!adTagOne) return
   return adTagOne
 })
 
 const adTagTwo = computed(() => {
   var adTagTwo = themeLocale.value.adTagTwo
-  if (adTagTwo === null) {
-    return null
-  }
-  
+  if (!adTagTwo) return
   return adTagTwo
 })
 
 const adsBool = computed(() => {
-  if (frontmatter.value.ads == null) {
-    return true
-  }
-  
+  if (!frontmatter.value.ads) return
   return frontmatter.value.ads
 })
 
