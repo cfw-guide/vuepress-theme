@@ -48,6 +48,10 @@
           <div :id="adTagTwo"></div>
       </div>
 
+      <div v-for="ad in splashAd" :key="ad">
+        <div :id='ad.id' :style="`min-width: ${ad.size[0]}px; min-height: ${ad.size[1]}px;`" v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); }); </script>`"/>
+      </div>
+
       <template v-if="footer">
         <!-- eslint-disable-next-line vue/no-v-html -->
         <div v-if="footerHtml" class="footer" v-html="footer" />
@@ -121,6 +125,13 @@ const discordNoticeText = computed(() => {
   if (!discordNoticeText) return
   
   return '<p>' + discordNoticeText + '</p>'
+})
+
+const splashAd = computed(() => {
+  var adArr = themeLocale.value.splashAd
+  if (!adArr) return
+
+  return adArr
 })
 
 const adTagOne = computed(() => {
