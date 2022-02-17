@@ -7,7 +7,9 @@
       <div class="custom-container tip" v-if="discordNoticeText" v-html="discordNoticeText"/>
 
       <template v-for="(ad, index) in adArr" :key="ad">
-        <div :id='ad.id' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); });</script>`"/>
+        <template v-if="index % 2 == 0">
+          <div :id='ad.id' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); });</script>`"/>
+        </template>
       </template>
       
       <Content />
