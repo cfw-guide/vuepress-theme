@@ -6,25 +6,17 @@
       <h1>{{ pageTitle }}</h1>
       <div class="custom-container tip" v-if="discordNoticeText" v-html="discordNoticeText"/>
 
-      <div v-for="(ad, index) in adArr" :key="ad">
-        <template v-if="index % 2 == 0">
-          <template v-if="1" v-html="`<!-- ${ad.name} -->`"/>
-          <div :id='ad.id' v-html="`<script>
-            googletag.cmd.push(function() { googletag.display('${ad.id}'); });
-          </script>`"/>
-        </template>
-      </div>
+      <template v-for="(ad, index) in adArr" :key="ad">
+        <div :id='ad.id' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); });</script>`"/>
+      </template>
       
       <Content />
 
-      <div v-for="(ad, index) in adArr" :key="ad">
+      <template v-for="(ad, index) in adArr" :key="ad">
         <template v-if="index % 2 != 0">
-          <template v-if="1" v-html="`<!-- ${ad.name} -->`"/>
-          <div :id='ad.id' v-html="`<script>
-            googletag.cmd.push(function() { googletag.display('${ad.id}'); });
-          </script>`"/>
+          <div :id='ad.id' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); });</script>`"/>
         </template>
-      </div>
+      </template>
     </div>
 
     <PageMeta />
