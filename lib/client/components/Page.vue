@@ -7,33 +7,33 @@
       <div class="custom-container tip" v-if="discordNoticeText" v-html="discordNoticeText"/>
 
       <div v-for="(ad, index) in adArr" :key="ad">
-        {{ index % 2 == 0 ? `
-        <script>
-          window.googletag = window.googletag || {cmd: []};
-          googletag.cmd.push(function() {
-            googletag.defineSlot(${ad.name}, ${ad.size}, ${ad.id}).addService(googletag.pubads());
-            googletag.pubads().enableSingleRequest();
-            googletag.enableServices();
-          });
-        </script>
-        ` : ''}}
-        <div v-if="index % 2 == 0" :id='ad' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); }); </script>`"/>
+        <template v-if="index % 2 == 0">
+          <div v-html="`<script>
+            window.googletag = window.googletag || {cmd: []};
+            googletag.cmd.push(function() {
+              googletag.defineSlot(${ad.name}, ${ad.size}, ${ad.id}).addService(googletag.pubads());
+              googletag.pubads().enableSingleRequest();
+              googletag.enableServices();
+            });
+          </script>`"/>
+          <div :id='ad' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); }); </script>`"/>
+        </template>
       </div>
       
       <Content />
 
       <div v-for="(ad, index) in adArr" :key="ad">
-        {{ index % 2 != 0 ? `
-        <script>
-          window.googletag = window.googletag || {cmd: []};
-          googletag.cmd.push(function() {
-            googletag.defineSlot(${ad.name}, ${ad.size}, ${ad.id}).addService(googletag.pubads());
-            googletag.pubads().enableSingleRequest();
-            googletag.enableServices();
-          });
-        </script>
-        ` : ''}}
-        <div v-if="index % 2 != 0" :id='ad' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); }); </script>`"/>
+        <template v-if="index % 2 != 0">
+          <div v-html="`<script>
+            window.googletag = window.googletag || {cmd: []};
+            googletag.cmd.push(function() {
+              googletag.defineSlot(${ad.name}, ${ad.size}, ${ad.id}).addService(googletag.pubads());
+              googletag.pubads().enableSingleRequest();
+              googletag.enableServices();
+            });
+          </script>`"/>
+          <div :id='ad' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); }); </script>`"/>
+        </template>
       </div>
     </div>
 
@@ -75,7 +75,7 @@ const adArr = computed(() => {
   var adArr = themeLocale.value.adArr
   if (!adArr || (frontmatter.value.ads === false)) return
 
-  return adArr.map(x => `div-gpt-ad-${x}-0`)
+  return adArr
 })
 
 const pageTitle = computed(() => {
