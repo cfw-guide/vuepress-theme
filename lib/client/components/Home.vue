@@ -123,6 +123,11 @@ const tagline = computed(() => {
 const discordNoticeText = computed(() => {
   var discordNoticeText = frontmatter.value.discordNoticeText || themeLocale.value.discordNoticeText
   if (!discordNoticeText) return
+
+  var MarkdownIt = require('markdown-it'),
+    md = new MarkdownIt();
+
+  discordNoticeText = md.render(discordNoticeText)
   
   return '<p>' + discordNoticeText + '</p>'
 })
