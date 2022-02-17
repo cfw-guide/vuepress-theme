@@ -8,14 +8,6 @@
 
       <div v-for="(ad, index) in adArr" :key="ad">
         <template v-if="index % 2 == 0">
-          <div v-html="`<script>
-            window.googletag = window.googletag || {cmd: []};
-            googletag.cmd.push(function() {
-              googletag.defineSlot('${ad.name}', ${ad.size}, '${ad.id}').addService(googletag.pubads());
-              googletag.pubads().enableSingleRequest();
-              googletag.enableServices();
-            });
-          </script>`"/>
           <div :id='ad.id' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); }); </script>`"/>
         </template>
       </div>
@@ -24,14 +16,6 @@
 
       <div v-for="(ad, index) in adArr" :key="ad">
         <template v-if="index % 2 != 0">
-          <div v-html="`<script>
-            window.googletag = window.googletag || {cmd: []};
-            googletag.cmd.push(function() {
-              googletag.defineSlot('${ad.name}', ${ad.size}, '${ad.id}').addService(googletag.pubads());
-              googletag.pubads().enableSingleRequest();
-              googletag.enableServices();
-            });
-          </script>`"/>
           <div :id='ad' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); }); </script>`"/>
         </template>
       </div>
