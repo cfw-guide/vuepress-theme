@@ -41,7 +41,10 @@
       </div>
 
       <div v-for="ad in adArr" :key="ad">
-        <div :id='ad.id' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); }); </script>`"/>
+        <template v-if="1" v-html="`<!-- ${ad.name} -->`"/>
+          <div :id='ad.id' v-html="`<script>
+            googletag.cmd.push(function() { googletag.display('${ad.id}'); });
+          </script>`"/>
       </div>
 
       <template v-if="footer">

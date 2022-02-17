@@ -8,7 +8,10 @@
 
       <div v-for="(ad, index) in adArr" :key="ad">
         <template v-if="index % 2 == 0">
-          <div :id='ad.id' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); }); </script>`"/>
+          <template v-if="1" v-html="`<!-- ${ad.name} -->`"/>
+          <div :id='ad.id' v-html="`<script>
+            googletag.cmd.push(function() { googletag.display('${ad.id}'); });
+          </script>`"/>
         </template>
       </div>
       
@@ -16,7 +19,10 @@
 
       <div v-for="(ad, index) in adArr" :key="ad">
         <template v-if="index % 2 != 0">
-          <div :id='ad' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); }); </script>`"/>
+          <template v-if="1" v-html="`<!-- ${ad.name} -->`"/>
+          <div :id='ad.id' v-html="`<script>
+            googletag.cmd.push(function() { googletag.display('${ad.id}'); });
+          </script>`"/>
         </template>
       </div>
     </div>
