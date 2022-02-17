@@ -44,7 +44,7 @@
         <div v-html="`<script>
           window.googletag = window.googletag || {cmd: []};
           googletag.cmd.push(function() {
-            googletag.defineSlot(${ad.name}, ${ad.size}, ${ad.id}).addService(googletag.pubads());
+            googletag.defineSlot('${ad.name}', ${ad.size}, '${ad.id}').addService(googletag.pubads());
             googletag.pubads().enableSingleRequest();
             googletag.enableServices();
           });
@@ -136,7 +136,7 @@ const adArr = computed(() => {
   var adArr = themeLocale.value.adArr
   if (!adArr || (frontmatter.value.ads === false)) return
 
-  return adArr.map(x => `div-gpt-ad-${x}-0`)
+  return adArr
 })
 
 // action buttons

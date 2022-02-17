@@ -11,7 +11,7 @@
           <div v-html="`<script>
             window.googletag = window.googletag || {cmd: []};
             googletag.cmd.push(function() {
-              googletag.defineSlot(${ad.name}, ${ad.size}, ${ad.id}).addService(googletag.pubads());
+              googletag.defineSlot('${ad.name}', ${ad.size}, '${ad.id}').addService(googletag.pubads());
               googletag.pubads().enableSingleRequest();
               googletag.enableServices();
             });
@@ -27,7 +27,7 @@
           <div v-html="`<script>
             window.googletag = window.googletag || {cmd: []};
             googletag.cmd.push(function() {
-              googletag.defineSlot(${ad.name}, ${ad.size}, ${ad.id}).addService(googletag.pubads());
+              googletag.defineSlot('${ad.name}', ${ad.size}, '${ad.id}').addService(googletag.pubads());
               googletag.pubads().enableSingleRequest();
               googletag.enableServices();
             });
