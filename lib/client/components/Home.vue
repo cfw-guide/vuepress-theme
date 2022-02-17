@@ -41,7 +41,17 @@
       </div>
 
       <div v-for="ad in adArr" :key="ad">
-        <div :id='ad' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad}'); }); </script>`"/>
+        {{`
+        <script>
+          window.googletag = window.googletag || {cmd: []};
+          googletag.cmd.push(function() {
+            googletag.defineSlot(${ad.name}, ${ad.size}, ${ad.id}).addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+          });
+        </script>
+        `}}
+        <div :id='ad' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); }); </script>`"/>
       </div>
 
       <template v-if="footer">

@@ -7,13 +7,33 @@
       <div class="custom-container tip" v-if="discordNoticeText" v-html="discordNoticeText"/>
 
       <div v-for="(ad, index) in adArr" :key="ad">
-        <div v-if="index % 2 == 0" :id='ad' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad}'); }); </script>`"/>
+        {{ index % 2 == 0 ? `
+        <script>
+          window.googletag = window.googletag || {cmd: []};
+          googletag.cmd.push(function() {
+            googletag.defineSlot(${ad.name}, ${ad.size}, ${ad.id}).addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+          });
+        </script>
+        ` : ''}}
+        <div v-if="index % 2 == 0" :id='ad' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); }); </script>`"/>
       </div>
       
       <Content />
 
       <div v-for="(ad, index) in adArr" :key="ad">
-        <div v-if="index % 2 != 0" :id='ad' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad}'); }); </script>`"/>
+        {{ index % 2 != 0 ? `
+        <script>
+          window.googletag = window.googletag || {cmd: []};
+          googletag.cmd.push(function() {
+            googletag.defineSlot(${ad.name}, ${ad.size}, ${ad.id}).addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+          });
+        </script>
+        ` : ''}}
+        <div v-if="index % 2 != 0" :id='ad' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); }); </script>`"/>
       </div>
     </div>
 
