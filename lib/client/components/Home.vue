@@ -49,7 +49,7 @@
             googletag.enableServices();
           });
         </script>`"/>
-        <div :id='ad' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); }); </script>`"/>
+        <div :id='ad.id' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); }); </script>`"/>
       </div>
 
       <template v-if="footer">
