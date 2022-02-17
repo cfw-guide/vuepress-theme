@@ -39,17 +39,9 @@
       <div class="theme-default-content custom">
         <Content />
       </div>
-      
-      <div v-if="adTagOne && adsBool" style="text-align: center;">
-          <div :id="adTagOne"></div>
-      </div>
-      <hr v-if="adTagOne && adTagTwo && adsBool">
-      <div v-if="adTagTwo && adsBool" style="text-align: center;">
-          <div :id="adTagTwo"></div>
-      </div>
 
-      <div v-for="ad in splashAd" :key="ad">
-        <div :id='ad.id' :style="`min-width: ${ad.size[0]}px; min-height: ${ad.size[1]}px;`" v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); }); </script>`"/>
+      <div v-for="ad in adArr" :key="ad">
+        <div :id='ad' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad}'); }); </script>`"/>
       </div>
 
       <template v-if="footer">
@@ -132,28 +124,11 @@ const discordNoticeText = computed(() => {
   return '<p>' + discordNoticeText + '</p>'
 })
 
-const splashAd = computed(() => {
-  var adArr = themeLocale.value.splashAd
-  if (!adArr) return
+const adArr = computed(() => {
+  var adArr = themeLocale.value.adArr
+  if (!adArr || (frontmatter.value.ads === false)) return
 
-  return adArr
-})
-
-const adTagOne = computed(() => {
-  var adTagOne = themeLocale.value.adTagOne
-  if (!adTagOne) return
-  return adTagOne
-})
-
-const adTagTwo = computed(() => {
-  var adTagTwo = themeLocale.value.adTagTwo
-  if (!adTagTwo) return
-  return adTagTwo
-})
-
-const adsBool = computed(() => {
-  if (!frontmatter.value.ads) return
-  return frontmatter.value.ads
+  return adArr.map(x => `div-gpt-ad-${x}-0`)
 })
 
 // action buttons

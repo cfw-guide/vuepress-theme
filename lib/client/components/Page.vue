@@ -5,15 +5,15 @@
     <div class="theme-default-content">
       <h1>{{ pageTitle }}</h1>
       <div class="custom-container tip" v-if="discordNoticeText" v-html="discordNoticeText"/>
-      
-      <div v-if="adTagOne && adsBool" style="text-align: center;">
-          <div :id="adTagOne"></div>
+
+      <div v-for="(ad, index) in adArr" :key="ad">
+        <div v-if="index % 2 == 0" :id='ad' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad}'); }); </script>`"/>
       </div>
       
       <Content />
-      
-      <div v-if="adTagTwo && adsBool" style="text-align: center;">
-          <div :id="adTagTwo"></div>
+
+      <div v-for="(ad, index) in adArr" :key="ad">
+        <div v-if="index % 2 != 0" :id='ad' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad}'); }); </script>`"/>
       </div>
     </div>
 
@@ -51,21 +51,11 @@ const discordNoticeText = computed(() => {
   return '<p>' + discordNoticeText + '</p>'
 })
 
-const adTagOne = computed(() => {
-  var adTagOne = themeLocale.value.adTagOne
-  if (!adTagOne) return
-  return adTagOne
-})
+const adArr = computed(() => {
+  var adArr = themeLocale.value.adArr
+  if (!adArr || (frontmatter.value.ads === false)) return
 
-const adTagTwo = computed(() => {
-  var adTagTwo = themeLocale.value.adTagTwo
-  if (!adTagTwo) return
-  return adTagTwo
-})
-
-const adsBool = computed(() => {
-  if (!frontmatter.value.ads) return
-  return frontmatter.value.ads
+  return adArr.map(x => `div-gpt-ad-${x}-0`)
 })
 
 const pageTitle = computed(() => {
