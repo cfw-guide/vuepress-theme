@@ -40,8 +40,9 @@
         <Content />
       </div>
 
-      <template v-for="ad in adArr" :key="ad">
+      <template v-for="(ad, index) in adArr" :key="ad">
         <div :id='ad.id' :style='`min-width: ${ad.minWidth}px; min-height: ${ad.minHeight}px;`' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); });s</script>`"/>
+        <hr v-if="index != adArr.length">
       </template>
 
       <template v-if="footer">
