@@ -40,6 +40,7 @@ import { computed } from 'vue'
 import type { DefaultThemeHomePageFrontmatter } from '../../shared'
 const frontmatter = usePageFrontmatter<DefaultThemeHomePageFrontmatter>()
 import { useThemeLocaleData } from '../composables'
+import MarkdownIt from 'markdown-it'
 
 const themeLocale = useThemeLocaleData()
 
@@ -47,8 +48,7 @@ const discordNoticeText = computed(() => {
   var discordNoticeText = frontmatter.value.discordNoticeText || themeLocale.value.discordNoticeText
   if (!discordNoticeText) return
 
-  var MarkdownIt = require('markdown-it'),
-    md = new MarkdownIt();
+  var md = new MarkdownIt();
 
   discordNoticeText = md.render(discordNoticeText)
   
