@@ -8,7 +8,7 @@
 
       <template v-for="(ad, index) in adArr" :key="ad">
         <template v-if="index % 2 == 0">
-          <div :id='ad.id' :style='`min-width: ${ad.minWidth}px; min-height: ${ad.minHeight}px;`' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); });</script>`"/>
+          <div :id='ad.id' style='text-align: center;' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); });</script>`"/>
         </template>
       </template>
       
@@ -16,7 +16,7 @@
 
       <template v-for="(ad, index) in adArr" :key="ad">
         <template v-if="index % 2 != 0">
-          <div :id='ad.id' :style='`min-width: ${ad.minWidth}px; min-height: ${ad.minHeight}px;`' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); });</script>`"/>
+          <div :id='ad.id' style='text-align: center;' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); });</script>`"/>
         </template>
       </template>
     </div>
