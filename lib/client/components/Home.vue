@@ -91,8 +91,8 @@ const heroFilter = computed(() => {
 })
 
 const heroText = computed(() => {
-  if (!frontmatter.value.header.overlay_title) return
-  return frontmatter.value.header.overlay_title || siteLocale.value.title || 'Hello'
+  if (!(frontmatter.value.header.overlay_title || siteLocale.value.title)) return
+  return frontmatter.value.header.overlay_title || siteLocale.value.title
 })
 const heroBtnText = computed(() => {
   if (!frontmatter.value.header.cta_label) return
@@ -106,11 +106,10 @@ const heroAlt = computed(
   () => frontmatter.value.heroAlt || heroText.value || 'hero'
 )
 const tagline = computed(() => {
-  if (!frontmatter.value.header.overlay_excerpt) return
+  if (!(frontmatter.value.header.overlay_excerpt || siteLocale.value.description)) return
   return (
     frontmatter.value.header.overlay_excerpt ||
-    siteLocale.value.description ||
-    'Welcome to your VuePress site'
+    siteLocale.value.description
   )
 })
 
