@@ -35,6 +35,10 @@
     a {
       color: var(--c-tip-text-accent);
     }
+
+    code {
+      background-color: var(--c-tip-code-bg);
+    }
   }
 
   &.warning {
@@ -49,6 +53,10 @@
     a {
       color: var(--c-warning-text-accent);
     }
+
+    code {
+      background-color: var(--c-warning-code-bg);
+    }
   }
 
   &.danger {
@@ -62,6 +70,10 @@
 
     a {
       color: var(--c-danger-text-accent);
+    }
+
+    code {
+      background-color: var(--c-danger-code-bg);
     }
   }
 
