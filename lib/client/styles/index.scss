@@ -2,6 +2,7 @@
 @use 'vars-dark';
 @use 'normalize';
 
+@use 'animations';
 @use 'arrow';
 @use 'badge';
 @use 'code';
@@ -17,5 +18,6 @@
 @use 'sr-only';
 @use 'toc';
 @use 'transitions';
+@use 'typography';
 
 @use '@vuepress/plugin-palette/style';

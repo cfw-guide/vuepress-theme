@@ -158,6 +158,7 @@
     &.open .nav-dropdown {
       // override the inline style.
       display: block !important;
+      animation: dropdown .3s cubic-bezier(0.73, 0.005, 0.22, 1);
     }
 
     &.open:blur {
@@ -176,8 +177,8 @@
       right: 0;
       background-color: var(--c-bg-navbar);
       padding: 0.6rem 0;
-      border: 1px solid var(--c-border);
-      border-bottom-color: var(--c-border-dark);
+      border: 1px solid var(--c-bg-border);
+      box-shadow: 0px 1px 6px rgba(43, 42, 51, 0.05);
       text-align: left;
       border-radius: 0.25rem;
       white-space: nowrap;
