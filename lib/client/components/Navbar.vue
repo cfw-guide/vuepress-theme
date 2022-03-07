@@ -24,6 +24,8 @@
       </RouterLink>
     </span>
 
+    <NavbarSearch />
+
     <div class="navbar-links-wrapper" :style="linksWrapperStyle">
       <slot name="before" />
 
@@ -32,8 +34,6 @@
       <slot name="after" />
 
       <ToggleDarkModeButton v-if="enableDarkMode" />
-
-      <NavbarSearch />
     </div>
   </header>
 </template>

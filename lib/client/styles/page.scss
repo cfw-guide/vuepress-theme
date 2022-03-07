@@ -18,12 +18,16 @@
 
     .meta-item-label {
       font-weight: 500;
-      color: var(--c-text-lighter);
+      color: var(--c-text-accent);
     }
 
     .meta-item-info {
       font-weight: 400;
-      color: var(--c-text-quote);
+      color: var(--c-text);
+    }
+
+    .icon.outbound {
+      color: var(--c-text-accent);
     }
   }
 
@@ -32,8 +36,18 @@
     margin-right: 0.25rem;
   }
 
-  .last-updated {
-    float: right;
+  .last-updated .meta-item-info {
+    color: var(--c-text-quote);
+    font-size: 14px;
+    margin-top: 4px;
+  }
+
+  .contributor-link {
+    display: inline-block;
+    overflow: hidden;
+    line-height: 1;
+    vertical-align: middle;
+    border-radius: 50%;
   }
 }
 
