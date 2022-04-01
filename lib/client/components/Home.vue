@@ -13,6 +13,10 @@
 
         <p v-if="heroBtnText"><router-link class="heroBtn" :to=heroBtnLink>{{heroBtnText}}</router-link></p>
 
+        <div style="display: flex;">
+          <p v-for="(b, index) in getBtn" :key="b" :style="(index < getBtn.length - 1) ? 'margin-right: 1em;' : ''"><router-link class="heroBtn" :to=b.url>{{b.label}}</router-link></p>
+        </div>
+
         <p v-if="actions.length" class="actions">
           <NavLink
             v-for="action in actions"
@@ -106,6 +110,14 @@ const heroBtnLink = computed(() => {
   if (!frontmatter.value.header.cta_url) return
   return frontmatter.value.header.cta_url
 })
+
+const getBtn = computed(() => {
+  var fmBtn = frontmatter.value.header.buttons
+  if (!fmBtn) return
+  if (!Array.isArray(fmBtn)) fmBtn = [fmBtn]
+  return fmBtn
+})
+
 const heroAlt = computed(
   () => frontmatter.value.heroAlt || heroText.value || 'hero'
 )
