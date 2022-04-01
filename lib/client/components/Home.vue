@@ -66,17 +66,21 @@ import { isArray } from '@vuepress/shared'
 import { computed } from 'vue'
 import type { DefaultThemeHomePageFrontmatter } from '../../shared'
 import NavLink from './NavLink.vue'
-import { useThemeLocaleData } from '../composables'
+import { useDarkMode, useThemeLocaleData } from '../composables'
 import MarkdownIt from 'markdown-it'
 
 const frontmatter = usePageFrontmatter<DefaultThemeHomePageFrontmatter>()
 const siteLocale = useSiteLocaleData()
 const themeLocale = useThemeLocaleData()
+const isDarkMode = useDarkMode()
 
 // hero image and title
 const heroImage = computed(() => {
-  if (!frontmatter.value.header.overlay_image) return
-  return withBase(frontmatter.value.header.overlay_image)
+  var ret = frontmatter.value.header.overlay_image
+  if (!ret) return
+  if (Array.isArray(ret)) ret = ret[Math.floor(Math.random() * ret.length)]
+  if (ret.hasOwnProperty('light') && ret.hasOwnProperty('dark')) return (isDarkMode.value) ? ret.dark : ret.light
+  return withBase(ret)
 })
 
 const heroColor = computed(() => {
