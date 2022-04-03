@@ -13,7 +13,7 @@
 
         <p v-if="heroBtnText"><router-link class="heroBtn" :to=heroBtnLink>{{heroBtnText}}</router-link></p>
 
-        <div style="display: flex;">
+        <div style="display: flex; flex-wrap: wrap;">
           <p v-for="(b, index) in getBtn" :key="b" :style="(index < getBtn.length - 1) ? 'margin-right: 1em;' : ''"><router-link class="heroBtn" :to=b.url>{{b.label}}</router-link></p>
         </div>
 
