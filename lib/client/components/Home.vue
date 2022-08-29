@@ -44,9 +44,9 @@
         <Content />
       </div>
 
-      <template v-for="(ad, index) in adArr" :key="ad">
-        <div :id='ad.id' style='text-align: center;' v-html="`<script>googletag.cmd.push(function() { googletag.display('${ad.id}'); });s</script>`"/>
-        <br v-if="index != adArr.length - 1">
+      <template v-for="(unit, index) in adUnits" :key="unit">
+        <div :id="`waldo-tag-${unit}`"></div>
+        <br v-if="index < adUnits.length - 1">
       </template>
 
       <template v-if="footer">
@@ -140,11 +140,11 @@ const discordNoticeText = computed(() => {
   return '<p>' + discordNoticeText + '</p>'
 })
 
-const adArr = computed(() => {
-  var adArr = themeLocale.value.adArr
-  if (!adArr || (frontmatter.value.ads === false)) return
+const adUnits = computed(() => {
+  var adUnits = themeLocale.value.adUnits
+  if (!adUnits || (frontmatter.value.ads === false)) return
 
-  return adArr
+  return adUnits
 })
 
 // action buttons
